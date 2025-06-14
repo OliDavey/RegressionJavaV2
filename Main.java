@@ -28,11 +28,6 @@ public class Main {
 
         // creating regression object
         Regression regModel = new Regression(dataTwo, 1, 2);
-        // testing functions 
-        System.out.println(regModel.getRegEquation());
-        System.out.println(regModel.correl());
-        System.out.println(regModel.rSqrd());
-        System.out.println(regModel.getRMSE());
-        System.out.println(regModel.residualOutliers());
+        DBoard db = new DBoard(regModel);
     }
 }
