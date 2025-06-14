@@ -10,7 +10,7 @@ import javax.swing.border.MatteBorder;
 
 public class DBoard extends JFrame{
 
-    private Regression model;
+    private final Regression model;
     
     public DBoard(Regression model){
         this.model = model;
@@ -40,11 +40,12 @@ public class DBoard extends JFrame{
 
         // scatter graph panel 1
         SCPlotPanel scpp = new SCPlotPanel(model);
-        scpp.setBorder(new MatteBorder(5,5,5,5,Color.BLUE));
+        scpp.setBackground(secondB);
+        //scpp.setBorder(new MatteBorder(5,5,5,5,Color.BLUE));
 
         // left side 
         JPanel regPanel = new JPanel();
-        regPanel.setBackground(secondB);
+        regPanel.setBackground(Color.WHITE);
         regPanel.setBounds(0,0, 600, 400);
         regPanel.setLayout(new BorderLayout());
         regPanel.setBorder(new MatteBorder(10,10,10,5, mainB));
@@ -63,8 +64,8 @@ public class DBoard extends JFrame{
         upperMet.setLayout(new BorderLayout());
         upperMet.setBorder(new MatteBorder(10,10,10,10, mainB));
 
+        scpp.add(eqLabel);
         regPanel.add(scpp);
-        regPanel.add(eqLabel);
         add(regPanel);
         add(infPanel);
         add(upperMet);
