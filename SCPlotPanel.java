@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.util.Arrays;
 import javax.swing.JPanel;
 
 
@@ -53,21 +54,30 @@ public class SCPlotPanel extends JPanel{
         gd.setPaint(Color.GREEN);
         gd.setStroke(new BasicStroke(3f));
 
+        double[] sortedX = new double[length];
+       
+        for (int i = 0; i < length; i++) {
+            sortedX[i] = x[i];
+        }
+
+        Arrays.sort(sortedX);
+        double start = intercept + slope * sortedX[0];
+        double stop = intercept + slope * sortedX[length-1];
+
+        gd.setStroke(new BasicStroke(2));
+        gd.setPaint(Color.cyan);
+        gd.drawLine(10 + (int) sortedX[0], 370 - (int) start, 10 + (int) sortedX[length-1], 370 - (int) stop);
+
+
         Point[] points = new Point[length];
         for (int i = 0; i < length; i++) {
             points[i] = new Point((int) x[i], (int) y[i]);
         }
-        
-        for (int i = 0; i < points.length; i++) {
-            gd.fillOval(points[i].x, 300 - points[i].y, 5, 5);
+
+        gd.setStroke(new BasicStroke(3f));
+        gd.setPaint(Color.green);
+        for (int i = 0; i < length; i++) {
+            gd.fillOval(10 + points[i].x, 370 - points[i].y, 5, 5);
         }
-
-        double start = intercept + slope * x[0];
-        double stop = intercept + slope * x[length-1];
-
-        gd.setStroke(new BasicStroke(1));
-        gd.setPaint(Color.cyan);
-        gd.drawLine(points[0].x, 300 - (int) start, points[length-1].x, 300 - (int) stop);
-        
     }
 }
