@@ -47,31 +47,65 @@ public class SCPlotPanel extends JPanel{
         Graphics2D gd = (Graphics2D) g;
 
         gd.setPaint(Color.WHITE);
-        gd.setStroke(new BasicStroke(5));
+        gd.setStroke(new BasicStroke(2));
         gd.drawLine(10, 370, 570,370);
         gd.drawLine(10, 370, 10, 10);
 
         gd.setPaint(Color.GREEN);
         gd.setStroke(new BasicStroke(3f));
 
+
+        // scaling data
+        double[] scaleXY = model.interval(560, 360);
+        double scaleX = scaleXY[0];
+        double scaleY = scaleXY[1];
+        double[] scaledX = new double[length];
+        double[] scaledY = new double[length];
+        double minX = Arrays.stream(x).min().getAsDouble();
+        double minY = Arrays.stream(y).min().getAsDouble();
+
+        for (int i = 0 ; i < length; i++){
+            scaledX[i] = (x[i] * scaleX) - (minX * scaleX) + 10;
+            scaledY[i] = (y[i] * scaleY) - (minY * scaleY) + 10;
+        }
+
+        // sorting data
         double[] sortedX = new double[length];
        
-        for (int i = 0; i < length; i++) {
-            sortedX[i] = x[i];
+        for(int i = 0; i < length; i++) {
+            sortedX[i] = scaledX[i];
         }
 
         Arrays.sort(sortedX);
-        double start = intercept + slope * sortedX[0];
-        double stop = intercept + slope * sortedX[length-1];
 
+        double[] sortedY = new double[length];
+       
+        for(int i = 0; i < length; i++) {
+            sortedY[i] = scaledY[i];
+        }
+
+        Arrays.sort(sortedY);
+        
+        double nSlope = model.slopeCalc(scaledX, scaledY);
+        
+
+        // calcing points for line of best fit
+        double start = intercept + nSlope * sortedX[0];
+        double stop = intercept + nSlope * sortedX[length-1];
+
+        // line of best fit
         gd.setStroke(new BasicStroke(2));
         gd.setPaint(Color.cyan);
-        gd.drawLine(10 + (int) sortedX[0], 370 - (int) start, 10 + (int) sortedX[length-1], 370 - (int) stop);
+        gd.drawLine(10 + (int) sortedX[0] , // x1 
+                    370 - (int) start, // y1
+                    10 + (int) sortedX[length-1], //x2
+                    370 - (int) stop); // y2
 
-
+        // takes in unsorted data
         Point[] points = new Point[length];
         for (int i = 0; i < length; i++) {
-            points[i] = new Point((int) x[i], (int) y[i]);
+            points[i] = new Point((int) scaledX[i], 
+                        (int) scaledY[i]);
         }
 
         gd.setStroke(new BasicStroke(3f));

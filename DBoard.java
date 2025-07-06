@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -43,6 +44,20 @@ public class DBoard extends JFrame{
         scpp.setBackground(secondB);
         //scpp.setBorder(new MatteBorder(5,5,5,5,Color.BLUE));
 
+        JLabel resLabel = new JLabel();
+        resLabel.setText("Residuals");
+        resLabel.setBounds(0,10, 275, 380);
+        resLabel.setHorizontalAlignment(JLabel.CENTER);
+        resLabel.setVerticalAlignment(JLabel.BOTTOM);
+        resLabel.setHorizontalTextPosition(JLabel.CENTER);
+        resLabel.setVerticalTextPosition(JLabel.CENTER);
+        resLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
+        resLabel.setForeground(Color.white);
+
+        // box plot panel 
+        BXPlotPanel bxpp = new BXPlotPanel(model);
+        bxpp.setBackground(secondB);
+
         // left side 
         JPanel regPanel = new JPanel();
         regPanel.setBackground(Color.WHITE);
@@ -57,6 +72,19 @@ public class DBoard extends JFrame{
         infPanel.setLayout(new BorderLayout());
         infPanel.setBorder(new MatteBorder(10,5,10,10, mainB));
 
+        // stats for the model
+        // RMSE, Rsqr, R, CI 95%
+        JLabel RLabel = new JLabel();
+        RLabel.setText("Reyyy");
+        RLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+        RLabel.setBounds(10,10, 300, 200);
+        RLabel.setHorizontalAlignment(JLabel.CENTER);
+        RLabel.setVerticalAlignment(JLabel.CENTER);
+        RLabel.setHorizontalTextPosition(JLabel.CENTER);
+        RLabel.setVerticalTextPosition(JLabel.BOTTOM);
+        RLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
+        RLabel.setForeground(Color.white);
+
         // bottom
         JPanel upperMet = new JPanel();
         upperMet.setBackground(secondB);
@@ -67,7 +95,13 @@ public class DBoard extends JFrame{
         scpp.add(eqLabel);
         regPanel.add(scpp);
         add(regPanel);
+        
+        
+        infPanel.add(resLabel);
+        infPanel.add(bxpp);
         add(infPanel);
+
+        upperMet.add(RLabel);
         add(upperMet);
 
         pack();
