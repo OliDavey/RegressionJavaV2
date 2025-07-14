@@ -51,6 +51,16 @@ public class SCPlotPanel extends JPanel{
         gd.drawLine(10, 370, 570,370);
         gd.drawLine(10, 370, 10, 10);
 
+        int xAxis = 10;
+        int yAxis = 10;
+
+        for (int i = 0; i < 22; i++) {
+            gd.drawLine(xAxis, 370, xAxis, 365);
+            xAxis += 28;
+            gd.drawLine(10, yAxis, 15, yAxis);
+            yAxis += 18;
+        }
+
         gd.setPaint(Color.GREEN);
         gd.setStroke(new BasicStroke(3f));
 

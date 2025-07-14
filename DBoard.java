@@ -2,7 +2,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -44,9 +43,10 @@ public class DBoard extends JFrame{
         scpp.setBackground(secondB);
         //scpp.setBorder(new MatteBorder(5,5,5,5,Color.BLUE));
 
+        // label for residual word
         JLabel resLabel = new JLabel();
         resLabel.setText("Residuals");
-        resLabel.setBounds(0,10, 275, 380);
+        resLabel.setBounds(0,10, 275, 375);
         resLabel.setHorizontalAlignment(JLabel.CENTER);
         resLabel.setVerticalAlignment(JLabel.BOTTOM);
         resLabel.setHorizontalTextPosition(JLabel.CENTER);
@@ -74,16 +74,17 @@ public class DBoard extends JFrame{
 
         // stats for the model
         // RMSE, Rsqr, R, CI 95%
-        JLabel RLabel = new JLabel();
-        RLabel.setText("Reyyy");
-        RLabel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
-        RLabel.setBounds(10,10, 300, 200);
-        RLabel.setHorizontalAlignment(JLabel.CENTER);
-        RLabel.setVerticalAlignment(JLabel.CENTER);
-        RLabel.setHorizontalTextPosition(JLabel.CENTER);
-        RLabel.setVerticalTextPosition(JLabel.BOTTOM);
-        RLabel.setFont(new Font("SansSerif", Font.PLAIN, 18));
-        RLabel.setForeground(Color.white);
+        JPanel corrPanel = new JPanel();
+        corrPanel.setBackground(Color.WHITE);
+        corrPanel.setBounds(10,400,400,200);
+        regPanel.setLayout(new BorderLayout());
+
+
+        JPanel predPanel = new JPanel();
+        predPanel.setBackground(Color.BLUE);
+        predPanel.setBounds(400,400,500,200);
+        predPanel.setLayout(new BorderLayout());
+    
 
         // bottom
         JPanel upperMet = new JPanel();
@@ -101,7 +102,8 @@ public class DBoard extends JFrame{
         infPanel.add(bxpp);
         add(infPanel);
 
-        upperMet.add(RLabel);
+        upperMet.add(corrPanel);
+        upperMet.add(predPanel);
         add(upperMet);
 
         pack();

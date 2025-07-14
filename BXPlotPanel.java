@@ -73,6 +73,16 @@ public class BXPlotPanel extends JPanel{
         // median line
         gd.drawLine(100, getHeight() / 2 - (int) (median * scale), 
                     185, getHeight() / 2 - (int) (median * scale));
+
+        gd.setColor(Color.white);
+        gd.drawLine(25, 20, 25, 365);
+
+        int lHeight = 20;
+        for (int i = 0; i < 11; i++) {
+            gd.drawLine(25, lHeight, 30, lHeight);
+            lHeight += 34;
+        }
+        
         
         gd.setColor(Color.red);
         gd.setStroke(new BasicStroke(3));
