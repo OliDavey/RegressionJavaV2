@@ -42,26 +42,27 @@ public class BXPlotPanel extends JPanel{
 
         // fences 
         gd.setColor(Color.cyan);
-        gd.drawLine(100, getHeight() / 2 - (int) (upperFence * scale), 
-                    185, getHeight() / 2 - (int) (upperFence * scale));
+        gd.drawLine((getWidth() / 2) - 20, getHeight() / 2 - (int) (upperFence * scale), 
+                    (getWidth() / 2) + 20, getHeight() / 2 - (int) (upperFence * scale));
 
 
-        gd.drawLine(100, getHeight() / 2 - (int) (lowerFence * scale),
-                    185, getHeight() / 2 - (int) (lowerFence * scale));
+        gd.drawLine((getWidth() / 2) - 20, getHeight() / 2 - (int) (lowerFence * scale),
+                    (getWidth() / 2) + 20, getHeight() / 2 - (int) (lowerFence * scale));
+        
         // left side 
-        gd.drawLine(100, getHeight() / 2 - (int) (q3 * scale), 
-                    100, getHeight() / 2 - (int) (q1 * scale));
+        gd.drawLine((getWidth() / 2) - 40, getHeight() / 2 - (int) (q3 * scale), 
+                    (getWidth() / 2) - 40, getHeight() / 2 - (int) (q1 * scale));
         // right side 
-        gd.drawLine(185, getHeight() / 2 - (int) (q3 * scale), 
-                    185, getHeight() / 2 - (int) (q1 * scale));
+        gd.drawLine((getWidth() / 2) + 40, getHeight() / 2 - (int) (q3 * scale), 
+                    (getWidth() / 2) + 40, getHeight() / 2 - (int) (q1 * scale));
 
         // q1 and 3
-        gd.drawLine(100, getHeight() / 2 - (int) (q3 * scale), 
-                    185, getHeight() / 2 - (int) (q3 * scale));
+        gd.drawLine((getWidth() / 2) - 40, getHeight() / 2 - (int) (q3 * scale), 
+                    (getWidth() / 2) + 40, getHeight() / 2 - (int) (q3 * scale));
 
 
-        gd.drawLine(100, getHeight() / 2 - (int) (q1 * scale),
-                    185, getHeight() / 2 - (int) (q1 * scale));
+        gd.drawLine((getWidth() / 2) - 40, getHeight() / 2 - (int) (q1 * scale),
+                    (getWidth() / 2) + 40, getHeight() / 2 - (int) (q1 * scale));
 
         gd.drawLine(getWidth() / 2, getHeight() / 2 - (int) (upperFence * scale), 
                     getWidth() / 2, getHeight() / 2 - (int) (q3 * scale));
@@ -71,8 +72,8 @@ public class BXPlotPanel extends JPanel{
 
         gd.setColor(Color.green);
         // median line
-        gd.drawLine(100, getHeight() / 2 - (int) (median * scale), 
-                    185, getHeight() / 2 - (int) (median * scale));
+        gd.drawLine((getWidth() / 2) - 40, getHeight() / 2 - (int) (median * scale), 
+                    (getWidth() / 2) + 40, getHeight() / 2 - (int) (median * scale));
 
         gd.setColor(Color.white);
         gd.drawLine(25, 20, 25, 360);
@@ -83,12 +84,11 @@ public class BXPlotPanel extends JPanel{
             lHeight += 17;
         }
         
-        
         gd.setColor(Color.red);
         gd.setStroke(new BasicStroke(3));
         for (int i = 0; i < outliers.length; i++) {
             double spot = outliers[i] * scale; 
-            gd.fillOval((int) (getWidth() / 2) , getHeight() / 2 - (int) spot, 5, 5);
+            gd.fillOval((getWidth() / 2) - 2, getHeight() / 2 - (int) spot, 5, 5);
         }
     }
 }
