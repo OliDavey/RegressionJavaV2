@@ -321,6 +321,31 @@ public class Regression{
         return residuals[q3Pos];
     }
 
+    public String getCorrDesc(){
+        double pearsons = correl();
+        String strength = "";
+        String polarity = "";
+
+        // checking direction
+        if (pearsons >= 0){
+            polarity = "positive";
+        }
+        else{
+            polarity = "negative";
+        }
+
+        if(pearsons < 0.4){
+            strength = "weak";
+        } else if (pearsons < 0.7) {
+            strength = "moderate";
+        } else {
+            strength = "strong";
+        }
+
+        return String.format("There is a %S, %S association between the variables", 
+                polarity, strength);
+    }
+
     public double[] getX(){
         return x;
     }
