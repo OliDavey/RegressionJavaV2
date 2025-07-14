@@ -75,12 +75,12 @@ public class BXPlotPanel extends JPanel{
                     185, getHeight() / 2 - (int) (median * scale));
 
         gd.setColor(Color.white);
-        gd.drawLine(25, 20, 25, 365);
+        gd.drawLine(25, 20, 25, 360);
 
         int lHeight = 20;
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 21; i++) {
             gd.drawLine(25, lHeight, 30, lHeight);
-            lHeight += 34;
+            lHeight += 17;
         }
         
         
