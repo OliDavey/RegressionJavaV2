@@ -27,7 +27,7 @@ public class Main {
         }
 
         // creating regression object
-        Regression regModel = new Regression(dataTwo, 1, 2);
+        Regression regModel = new Regression(dataTwo, 1, 4);
         DBoard db = new DBoard(regModel);
     }
 }
